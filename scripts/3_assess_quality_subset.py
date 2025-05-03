@@ -230,11 +230,22 @@ if __name__ == "__main__":
 
             # Combine results
             relative_video_path = str(video_path.relative_to(project_root))
+            # Extract speaker/utterance ID from path (assuming standard structure)
+            try:
+                speaker_id = video_path.parent.parent.name
+                utterance_id = video_path.parent.name
+            except IndexError:
+                speaker_id = "unknown"
+                utterance_id = "unknown"
+                print(f"Warning: Could not parse speaker/utterance from path {video_path}", file=sys.stderr)
+
             quality_results.append({
                 'filepath_video': relative_video_path,
                 'filepath_audio': str(audio_path.relative_to(project_root)),
-                **video_metrics, # Unpack video metrics dict
-                **audio_metrics  # Unpack audio metrics dict
+                'speaker_id': speaker_id,        # Added
+                'utterance_id': utterance_id,    # Added (optional but potentially useful)
+                **video_metrics,
+                **audio_metrics
             })
 
         # --- Summarize Results ---
@@ -243,10 +254,48 @@ if __name__ == "__main__":
             quality_df = pd.DataFrame(quality_results)
             print("\nQuality Scores Summary:")
             print(quality_df.describe())
+
             # --- Save results (implement saving later) ---
+
             output_quality_path.parent.mkdir(parents=True, exist_ok=True)
             quality_df.to_csv(output_quality_path, index=False)
             print(f"\nQuality scores saved to: {output_quality_path}")
+
+            # --- Filter Based on Thresholds ---
+            print("\nFiltering results based on thresholds...")
+            MIN_FACE_PRESENCE = 0.99
+            MIN_BLUR_SCORE = 50
+            MIN_SPEECH_RATIO = 0.90
+
+            print(f"Applying thresholds:")
+            print(f"  - Min Face Presence: {MIN_FACE_PRESENCE}")
+            print(f"  - Min Avg Blur Score: {MIN_BLUR_SCORE}")
+            print(f"  - Min Speech Ratio: {MIN_SPEECH_RATIO}")
+
+            # Apply filters
+            filtered_df = quality_df[
+                (quality_df['face_presence_ratio'] >= MIN_FACE_PRESENCE) &
+                (quality_df['avg_blur_score'].notna()) &
+                (quality_df['avg_blur_score'] >= MIN_BLUR_SCORE) &
+                (quality_df['face_presence_ratio'] >= MIN_SPEECH_RATIO)
+             ]
+            
+            print(f"\nFiltering complete.")
+            print(f"Original samples: {len(quality_df)}")
+            print(f"Samples passing filters: {len(filtered_df)}")
+
+            # --- Save High-Quality Manifest ---
+            if not filtered_df.empty:
+                # Define path relative to project root
+                HIGH_QUALITY_MANIFEST_PATH_REL = "data/processed/high_quality_manifest.csv"
+                output_hq_manifest_path = (project_root / HIGH_QUALITY_MANIFEST_PATH_REL).resolve()
+
+                # Select only filepath columns for the final manifest
+                manifest_to_save = filtered_df[['filepath_video', 'filepath_audio', 'speaker_id']]
+                manifest_to_save.to_csv(output_hq_manifest_path, index=False)
+                print(f"\nHigh-quality manifest saved to: {output_hq_manifest_path}")
+            else:
+                print("\nWarning: No files passed the filtering thresholds. High-quality manifest not saved.")
         else:
             print("\nNo quality results generated.")
 
