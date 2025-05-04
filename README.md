@@ -85,6 +85,7 @@ This project successfully implemented an end-to-end pipeline for processing, ass
 * Perform visual/auditory inspection of edge cases identified by automated metrics.
 
 ## Repository Structure
+```
 ├── data/
 │   ├── raw/           
 │   │   └── dev/mp4/        
@@ -108,7 +109,7 @@ This project successfully implemented an end-to-end pipeline for processing, ass
 ├── .gitignore
 ├── README.md           
 └── requirements.txt        
-
+```
 ## How to Run (Attempt 2)
 1.  **Clone:** `git clone <repository_url>`
 2.  **Obtain Data:** Download at least one part (e.g., `dev aa`) of the **VoxCeleb2 video (`.mp4`) dataset** through the official request process ([Oxford VGGFace Website](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/vox2.html)). Unzip it and place the contents such that you have the structure `data/raw/dev/mp4/id*/*/*.mp4` within the project directory. *(Note: Raw data is required but not included in the repo)*.
