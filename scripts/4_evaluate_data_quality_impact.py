@@ -19,8 +19,11 @@ import traceback
 
 
 # Manifests relative to project root
-ORIGINAL_MANIFEST_REL = "data/development_subset_manifest.csv" # The first 100 samples
-HQ_MANIFEST_REL = "data/processed/high_quality_manifest.csv" # The filtered ~57 samples
+ORIGINAL_MANIFEST_REL = "data/development_subset_attempt2.csv" 
+#ORIGINAL_MANIFEST_REL = "data/development_subset_manifest.csv" # The first 100 samples
+
+HQ_MANIFEST_REL = "data/processed/attempt2_high_quality_manifest.csv"
+#HQ_MANIFEST_REL = "data/processed/high_quality_manifest.csv" # The filtered ~57 samples
 
 # Feature Extraction Parameters
 TARGET_SR = 16000 # Should match the SR of preprocessed audio

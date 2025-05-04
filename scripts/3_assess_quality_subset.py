@@ -12,9 +12,14 @@ import soundfile as sf
 
 # --- Configuration ---
 # Directory containing the standardized video/audio files
-PROCESSED_DATA_DIR_REL = "data/processed/standardized_subset"
+#PROCESSED_DATA_DIR_REL = "data/processed/standardized_subset" #Old Path
+
+PROCESSED_DATA_DIR_REL = "data/processed/attempt2_standardized_subset" 
+
 # File to save quality scores
-QUALITY_SCORES_PATH_REL = "data/processed/quality_scores.csv"
+#QUALITY_SCORES_PATH_REL = "data/processed/quality_scores.csv" #Old Path
+
+QUALITY_SCORES_PATH_REL = "data/processed/attempt2_quality_scores.csv"
 
 # MediaPipe Face Detection parameters
 MIN_DETECTION_CONFIDENCE = 0.5
@@ -287,7 +292,8 @@ if __name__ == "__main__":
             # --- Save High-Quality Manifest ---
             if not filtered_df.empty:
                 # Define path relative to project root
-                HIGH_QUALITY_MANIFEST_PATH_REL = "data/processed/high_quality_manifest.csv"
+                #HIGH_QUALITY_MANIFEST_PATH_REL = "data/processed/high_quality_manifest.csv" #old path
+                HIGH_QUALITY_MANIFEST_PATH_REL = "data/processed/attempt2_high_quality_manifest.csv"
                 output_hq_manifest_path = (project_root / HIGH_QUALITY_MANIFEST_PATH_REL).resolve()
 
                 # Select only filepath columns for the final manifest

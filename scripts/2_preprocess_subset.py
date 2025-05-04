@@ -9,9 +9,11 @@ import sys
 import os
 
 # --- Configuration ---
-MANIFEST_PATH = pathlib.Path("../data/development_subset_manifest.csv")
-OUTPUT_BASE_DIR = pathlib.Path("../data/processed/standardized_subset")
+MANIFEST_PATH = pathlib.Path("../data/development_subset_manifest2.csv")
+OUTPUT_BASE_DIR = pathlib.Path("../data/processed/attempt2_standardized_subset")
 
+#MANIFEST_PATH = pathlib.Path("../data/development_subset_manifest.csv") #Old path
+#OUTPUT_BASE_DIR = pathlib.Path("../data/processed/standardized_subset") #Old Path
 
 # Target format parameters
 TARGET_SR = 16000 # Target audio sample rate (Hz)
@@ -123,8 +125,8 @@ def preprocess_file(relative_filepath_str: str, output_dir: pathlib.Path, projec
 
 if __name__ == "__main__":
     project_root = pathlib.Path(__file__).resolve().parent.parent
-    manifest_full_path = (project_root / "data" / "development_subset_manifest.csv").resolve()
-    output_base_full_path = (project_root / "data" / "processed" / "standardized_subset").resolve()
+    manifest_full_path = (project_root / "data" / "development_subset_attempt2.csv").resolve()
+    output_base_full_path = (project_root / "data" / "processed" / "attempt2_standardized_subset").resolve()
 
     print(f"Project root identified as: {project_root}")
     print(f"Loading manifest from: {manifest_full_path}")
