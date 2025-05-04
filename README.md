@@ -86,28 +86,28 @@ This project successfully implemented an end-to-end pipeline for processing, ass
 
 ## Repository Structure
 ├── data/
-│   ├── raw/                    # Raw data (requires manual download, .gitignored)
-│   │   └── dev/mp4/            # Example structure for unzipped VoxCeleb part
-│   ├── processed/              # Processed data outputs
-│   │   ├── standardized_subset/       # Standardized files (Attempt 1, .gitignored)
-│   │   ├── attempt2_standardized_subset/ # Standardized files (Attempt 2, .gitignored)
-│   │   ├── quality_scores.csv          # Quality metrics (Attempt 1)
-│   │   ├── high_quality_manifest.csv   # Filtered manifest (Attempt 1)
-│   │   ├── attempt2_quality_scores.csv # Quality metrics (Attempt 2)
-│   │   └── attempt2_high_quality_manifest.csv # Filtered manifest (Attempt 2)
-│   ├── development_subset_manifest.csv       # Initial random subset manifest (Attempt 1)
-│   └── development_subset_attempt2.csv     # Targeted subset manifest (Attempt 2)
-├── notebooks/                  # Jupyter notebooks for exploration and analysis
-│   └── 01_initial_data_exploration.ipynb # Example notebook
-├── scripts/                    # Python scripts for pipeline stages
-│   ├── 0_analyze_raw_data_speakers.py # Speaker analysis & Attempt 2 manifest creation
-│   ├── 1_create_subset_manifest.py    # Attempt 1 random manifest creation
-│   ├── 2_preprocess_subset.py         # Standardization (needs config change per attempt)
-│   ├── 3_assess_quality_subset.py     # Quality assessment & filtering (needs config change per attempt)
-│   └── 4_evaluate_data_quality_impact.py # Evaluation framework (needs config change per attempt)
+│   ├── raw/           
+│   │   └── dev/mp4/        
+│   ├── processed/  
+│   │   ├── standardized_subset/
+│   │   ├── attempt2_standardized_subset/ 
+│   │   ├── quality_scores.csv
+│   │   ├── high_quality_manifest.csv
+│   │   ├── attempt2_quality_scores.csv
+│   │   └── attempt2_high_quality_manifest.csv
+│   ├── development_subset_manifest.csv
+│   └── development_subset_attempt2.csv
+├── notebooks/
+│   └── 01_initial_data_exploration.ipynb
+├── scripts/    
+│   ├── 0_analyze_raw_data_speakers.py
+│   ├── 1_create_subset_manifest.py
+│   ├── 2_preprocess_subset.py
+│   ├── 3_assess_quality_subset.py 
+│   └── 4_evaluate_data_quality_impact.py
 ├── .gitignore
-├── README.md                   # This file
-└── requirements.txt            # Python dependencies
+├── README.md           
+└── requirements.txt        
 
 ## How to Run (Attempt 2)
 1.  **Clone:** `git clone <repository_url>`
